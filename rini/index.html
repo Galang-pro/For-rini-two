@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valentine's Gift for Rini</title>
+  <style>
+    body {
+      background-color: #FFC0CB;
+      text-align: center;
+      font-family: 'Helvetica', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    h1 {
+      color: #FF1493;
+      margin-top: 50px;
+      font-size: 36px;
+    }
+    .message {
+      font-size: 22px;
+      color: #8B0000;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+    .message.show {
+      opacity: 1;
+    }
+    .btn {
+      background-color: #FF69B4;
+      color: white;
+      padding: 15px 30px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #ff407c;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s ease-in-out;
+    }
+    .gallery img:hover {
+      transform: scale(1.2);
+    }
+    #typing-text {
+      font-size: 24px;
+      color: #D6001C;
+      font-weight: bold;
+      height: 30px;
+    }
+    @keyframes falling-hearts {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
+    .heart {
+      position: absolute;
+      color: red;
+      font-size: 24px;
+      animation: falling-hearts 5s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy Valentine's Day, Rini! ❤️</h1>
+  <p id="typing-text"></p>
+  
+  <button class="btn" onclick="showLove()">Klik Aku!</button>
+  
+  <div class="container">
+    <div id="message" class="message">Will you be mine? </div>
+    
+    <div class="gallery">
+      <img src="rini 4 1.jpg" alt="Rini 1">
+      <img src="rini 4 2.jpg" alt="Rini 2">
+      <img src="rini 4 3.jpg" alt="Rini 3">
+    </div>
+  </div>
+
+  <audio id="background-music" src="happyvalentine.mp3"></audio>
+
+  <script>
+    let text = "Kamu adalah orang spesial dalam hidupku! ✨";
+    let index = 0;
+    function typeWriter() {
+      if (index < text.length) {
+        document.getElementById("typing-text").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 100);
+      }
+    }
+    typeWriter();
+
+    function showLove() {
+      let messageDiv = document.getElementById("message");
+      messageDiv.classList.add("show");
+      let audio = document.getElementById("background-music");
+      if (audio.paused) {
+        audio.play();
+      }
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }
+    }
+    setInterval(createHearts, 1000);
+  </script>
+
+</body>
+</html>
